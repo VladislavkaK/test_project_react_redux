@@ -1,3 +1,4 @@
 import TableLeftContainer from './TableLeftContainer';
+import asTableLeftContainer from './asTableLeftContainer';
 
-export default TableLeftContainer;
+export default asTableLeftContainer(TableLeftContainer);

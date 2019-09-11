@@ -1,5 +1,8 @@
-const initialState: any = {
+import { dataLeftColumn, dataRightColumn } from '../../utills/data';
 
+const initialState: any = {
+    dataLeft : dataLeftColumn,
+    dataRight : dataRightColumn,
 }
 
 function mainReducer (state = initialState, action: any) {
