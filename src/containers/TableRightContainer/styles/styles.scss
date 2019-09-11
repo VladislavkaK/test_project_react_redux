@@ -1,0 +1,167 @@
+.container-table-right {
+    padding-top: 80px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    display: inline-block;
+
+    .main-wrapper-right {
+        overflow-y: scroll;
+        width: 500px;
+        // height:auto;
+        max-height: 580px;
+        // max-height:800px;
+        border: 1px solid black;
+
+        .main-block {
+            margin: 5px;
+            height: 200px;
+            background: #f1e2e2;
+            display: flex;
+            justify-content: space-between;
+
+            .block__content {
+                margin: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+
+                .content-article {
+                    
+                }
+
+                .content-title {
+                    padding-top: 15px;
+                }
+
+                .content-description {
+                    padding-top: 15px;
+                    height: 110px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    line-height: 16px;
+                    -webkit-line-clamp: 6; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                }
+            }
+
+            .block__checkbox {
+                margin: 10px;
+                display: flex;
+                align-items: center;
+
+                .form-group {
+                    display: block;
+                    margin-bottom: 15px;
+                }
+
+                .form-group input {
+                    padding: 0;
+                    height: initial;
+                    width: initial;
+                    margin-bottom: 0;
+                    display: none;
+                    cursor: pointer;
+                }
+                  
+                .form-group label {
+                    position: relative;
+                    cursor: pointer;
+                }
+
+                .form-group label:before {
+                    content:'';
+                    -webkit-appearance: none;
+                    background-color: transparent;
+                    border: 2px solid #0079bf;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                    padding: 10px;
+                    display: inline-block;
+                    position: relative;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    margin-right: 5px;
+                }
+                  
+                .form-group input:checked + label:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 2px;
+                    left: 9px;
+                    width: 6px;
+                    height: 14px;
+                    border: solid #0079bf;
+                    border-width: 0 2px 2px 0;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button.arrow-button {
+        margin: 1em auto;
+        width: 140px;
+        text-align: center;
+        background-color: #eee;
+        padding: 0.5em 0;
+        display: block;
+        color: #333;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.6);
+        border-radius: 8px;
+        cursor: pointer;
+        outline: none;
+
+        &:hover {
+          color: #eee;
+          background-color: #333;
+        }
+    }
+
+    .select-all {
+        color: black;
+        &:hover {
+            color: #eee;
+            background-color: #333;
+        }
+    }
+
+    .select-nothing {
+        color: black;
+        &:hover {
+            color: #eee;
+            background-color: #333;
+        }
+    }
+
+    .delete {
+        color: black;
+        &:hover {
+            color: #eee;
+            background-color: #333;
+        }
+    }
+
+    #style-4::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    #style-4::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    #style-4::-webkit-scrollbar-thumb {
+        background-color: #000000;
+    }
+}
+
