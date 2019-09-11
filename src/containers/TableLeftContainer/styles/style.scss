@@ -44,7 +44,7 @@
         flex-grow: 1;
         -webkit-flex-grow: 1;
     }
-      
+
     .text-one {
         overflow: hidden;
         white-space: nowrap;
@@ -68,6 +68,11 @@
         display: flex;
         justify-content: space-between;
     }
+
+    // .button-disabled {
+    //     opacity: 0.65;
+    //     cursor: not-allowed;
+    // }
 
     button.arrow-button {
         margin: 1em auto;
@@ -122,11 +127,11 @@
 
         .force-overflow {
             // min-height: 450px;
-            
+
         }
 
-        
-       
+
+
     }
 
     .active-row-default {
@@ -241,5 +246,5 @@
         padding-bottom: 8px;
         border-bottom: 1px solid black;
     }
-      
+
 }

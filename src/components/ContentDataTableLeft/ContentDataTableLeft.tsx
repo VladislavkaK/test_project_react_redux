@@ -1,28 +1,43 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const ContentDataTableLeft = ({ 
+const ContentDataTableLeft = ({
     data,
+    counter,
+    selectedDivDefault,
+    setSelectedDivDefault
 }) => {
 
-    const [active, setActive] = useState(false);
-    let classname = '';
+    const [selectedItem, setSelectedItem] = useState();
 
     const onChangeColorRow = (index) => {
-        if (index) {
-            setActive(!active);
-        }
+      setSelectedDivDefault(false);
+      setSelectedItem(index)
     }
 
-    if (active) {
-        classname = 'active-row';
-    }
+    useEffect(() => {
+      setSelectedDivDefault(true)
+    }, [])
 
     return (
         <React.Fragment>
             {data !== undefined && data.map((data, index) => {
+
+                if (selectedDivDefault && index === 0) {
+                  return (
+                    <div className={`table-row active-row`} onClick={() => onChangeColorRow(index)} key={index} >
+                        <div className="wrapper text-4">
+                            <div className="wrapper text-2">
+                                <div className="text-one">{data.artNo}</div>
+                                <div className="text-two">{data.name}</div>
+                            </div>
+                        </div>
+                    </div>
+                  )
+                }
+
                 return (
-                    <div className={`table-row ${classname}`} onClick={() => onChangeColorRow(index)} key={index} >
+                    <div className={`table-row ${(selectedItem === index || counter === index) ? 'active-row' : ''}`} onClick={() => onChangeColorRow(index)} key={index} >
                         <div className="wrapper text-4">
                             <div className="wrapper text-2">
                                 <div className="text-one">{data.artNo}</div>

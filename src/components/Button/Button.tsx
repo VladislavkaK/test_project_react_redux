@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-const Button = ({ name, content }) => {
+interface IProps {
+  name: any;
+  content: any;
+  onClick?: any;
+}
+
+const Button: React.FC<IProps> = ({ name, content, onClick }) => {
 
     let classname = ''
 
@@ -10,14 +16,14 @@ const Button = ({ name, content }) => {
         classname = 'arrow-down';
     } else if (content === 'arrow_up') {
         classname = 'arrow-up';
-    } 
+    }
 
     return (
-        <div className="footer-arrow-button__down" >
+        <div className="footer-arrow-button__down" onClick={onClick} >
             <button type="button" className="arrow-button">
                 <span className={classname}>{name}</span>
             </button>
-        </div> 
+        </div>
     )
 }
 
