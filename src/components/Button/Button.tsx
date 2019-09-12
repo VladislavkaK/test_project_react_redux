@@ -4,9 +4,10 @@ interface IProps {
   name: any;
   content: any;
   onClick?: any;
+  disabled?: any;
 }
 
-const Button: React.FC<IProps> = ({ name, content, onClick }) => {
+const Button: React.FC<IProps> = ({ name, content, onClick, disabled }) => {
 
     let classname = ''
 
@@ -20,7 +21,7 @@ const Button: React.FC<IProps> = ({ name, content, onClick }) => {
 
     return (
         <div className="footer-arrow-button__down" onClick={onClick} >
-            <button type="button" className="arrow-button">
+            <button type="button" className={`arrow-button ${disabled}`}>
                 <span className={classname}>{name}</span>
             </button>
         </div>
