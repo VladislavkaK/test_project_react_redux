@@ -1,10 +1,11 @@
 import * as React from 'react';
 
-const Checkbox = ({ index }) => {
+const Checkbox = ({ index, checked, onClick }) => {
+
     return (
         <div className="block__checkbox" >
             <div className="form-group">
-                <input type="checkbox" id={`html${index}`} />
+                <input type="checkbox" id={`html${index}`} defaultChecked={checked} onClick={onClick} />
                 <label htmlFor={`html${index}`}></label>
             </div>
         </div>

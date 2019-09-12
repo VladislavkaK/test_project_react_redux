@@ -6,9 +6,8 @@ import './styles/style.scss';
 
 const TableLeftContainer = ({ data }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [counter, setCounter] = useState(selectedIndex);
-    const disabledButtonUp = counter === 0 ? 'button-up-disabled' : '';
-    const disabledButtonDown = counter === data.length - 1 ? 'button-down-disabled' : '';
+    const disabledButtonUp = selectedIndex === 0 ? 'button-up-disabled' : '';
+    const disabledButtonDown = selectedIndex === data.length - 1 ? 'button-down-disabled' : '';
 
     const onHandleChangeIndexUp = () => {
         if (selectedIndex > 0) {

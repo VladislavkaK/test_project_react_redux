@@ -1,10 +1,18 @@
 import * as React from 'react';
 import { Checkbox } from '../../components';
 
-const ContentDataTableRight = ({ data }) => {
+const ContentDataTableRight = ({ data, arrData, deleteAllData }) => {
+
     return (
         <React.Fragment>
             {data !== undefined && data.map((data, index) => {
+                // if (data.checked) {
+                //     arrData.push({id: data.id})
+                // }
+                const onChangeCheckbox = () => {
+                    deleteAllData(data.id)
+                }
+
                 return (
                     <div className="main-block" key={index} >
                         <div className="block__content" >
@@ -18,7 +26,7 @@ const ContentDataTableRight = ({ data }) => {
                                 {data.description}
                             </div>
                         </div>
-                        <Checkbox index={index} />
+                        <Checkbox index={index} checked={data.checked} onClick={onChangeCheckbox} />
                     </div>
                 )
             })}
