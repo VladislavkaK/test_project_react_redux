@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import './styles/style.scss';
 
-const TableLeftContainer = ({ data }) => {
+const TableLeftContainer = ({ data, deleteRow, addRow }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const disabledButtonUp = selectedIndex === 0 ? 'button-up-disabled' : '';
     const disabledButtonDown = selectedIndex === data.length - 1 ? 'button-down-disabled' : '';
@@ -19,6 +19,10 @@ const TableLeftContainer = ({ data }) => {
         if (selectedIndex < data.length - 1) {
             setSelectedIndex(selectedIndex => selectedIndex + 1)
         }
+    }
+
+    const onHandleAdd = () => {
+
     }
 
     return (
@@ -43,7 +47,7 @@ const TableLeftContainer = ({ data }) => {
             <div className="footer" >
                 <Button name="" content={`arrow_down`} disabled={disabledButtonUp} onClick={onHandleChangeIndexDown} />
                 <Button name="" content={`arrow_up`} disabled={disabledButtonDown} onClick={onHandleChangeIndexUp} />
-                <Button name="Добавить" content="exist" />
+                <Button name="Добавить" content="exist" onClick={onHandleAdd} />
             </div>
         </div>
     )

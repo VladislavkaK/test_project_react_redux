@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 const ContentDataTableLeft = ({
     data,
     counter,
-    setSelectedIndex
+    setSelectedIndex,
 }) => {
 
     const [selectedItem, setSelectedItem] = useState();

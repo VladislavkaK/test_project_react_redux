@@ -8,10 +8,10 @@
     .main-wrapper {
         width: 500px;
         // height:auto;
-        min-height: 550px;
-        max-height: 550px;
+        min-height: 580px;
+        max-height: 580px;
         // max-height:800px;
-        overflow:auto;
+        overflow-y: scroll;
         border: 1px solid black;
 
         .table-row {
