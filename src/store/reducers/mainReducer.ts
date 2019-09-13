@@ -12,19 +12,31 @@ function mainReducer (state = initialState, action: any) {
         case "ADD_ROW":
             return ADD_ROW(state, action);
         case "DELETE_ROW":
-            return DELETE_ROW(state, action);        
+            return DELETE_ROW(state, action);
         case "SELECT_NOTHING_DATA":
             return SELECT_NOTHING_DATA(state, action);
         case "DELETE_SELECTED_ALL_DATA":
-            return DELETE_SELECTED_ALL_DATA(state, action);  
+            return DELETE_SELECTED_ALL_DATA(state, action);
         case "ADD_ROW_LEFT_TABLE":
-            return ADD_ROW_LEFT_TABLE(state, action);  
+            return ADD_ROW_LEFT_TABLE(state, action);
         default:
             return state;
     }
 }
 
 function SELECT_ALL_DATA(state, action) {
+    const { data } = action;
+    let newData = [];
+
+    for (let key in data) {
+        newData.push({ id: data[key].id, items: {
+            id: data[key].id,
+            artNo: data[key].artNo,
+            name: data[key].name,
+            description: data[key].description,
+            checked: true
+        } })
+    }
 
     return {
         ...state,
@@ -33,7 +45,9 @@ function SELECT_ALL_DATA(state, action) {
                 ...item,
                 checked: true
             }
-        })
+        }),
+        selectedData: newData,
+        selectAll: true
     };
 }
 
@@ -60,6 +74,18 @@ function DELETE_ROW (state, action) {
 }
 
 function SELECT_NOTHING_DATA(state, action) {
+    const { data } = action;
+    let newData = [];
+
+    for (let key in data) {
+        newData.push({ id: data[key].id, items: {
+            id: data[key].id,
+            artNo: data[key].artNo,
+            name: data[key].name,
+            description: data[key].description,
+            checked: false
+        } })
+    }
 
     return {
         ...state,
@@ -68,7 +94,9 @@ function SELECT_NOTHING_DATA(state, action) {
                 ...item,
                 checked: false
             }
-        })
+        }),
+        selectedData: newData,
+        selectAll: false
     };
 }
 
@@ -84,7 +112,9 @@ function DELETE_SELECTED_ALL_DATA(state, action) {
     }
 
     const newData = state.dataRight.map(item => {
+
         if (item !== null) {
+
             return {
                 id: item.id,
                 artNo: item.artNo,
@@ -95,7 +125,7 @@ function DELETE_SELECTED_ALL_DATA(state, action) {
         }
     })
 
-    return { ...state, dataRight: newData };
+    return { ...state, dataRight: newData || data };
 }
 
 function ADD_ROW_LEFT_TABLE (state, action) {

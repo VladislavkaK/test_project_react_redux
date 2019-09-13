@@ -10,19 +10,19 @@ const ContentDataTableRight = ({ data, deleteAllData, selectedCheckboxIndex, set
         const { checked } = e.target;
 
         if (checked) {
-            selectedCheckboxIndex.push({id, items})  
+            selectedCheckboxIndex.push({id, items})
         } else {
             const newIndex = selectedCheckboxIndex.findIndex(data => data.id === id);
-            selectedCheckboxIndex.splice(newIndex, 1)  
+            selectedCheckboxIndex.splice(newIndex, 1)
         }
-        
-        setSelectedCheckboxIndex(selectedCheckboxIndex) 
+
+        setSelectedCheckboxIndex(selectedCheckboxIndex)
     }
 
     return (
         <React.Fragment>
             {data !== undefined && data.map((data, index) => {
-                const items= {
+                const items = {
                     id: data.id,
                     artNo: data.artNo,
                     name: data.name,
@@ -43,10 +43,10 @@ const ContentDataTableRight = ({ data, deleteAllData, selectedCheckboxIndex, set
                                 {data.description}
                             </div>
                         </div>
-                        <Checkbox 
+                        <Checkbox
                             value={isChecked}
-                            index={index} 
-                            checked={data.checked} 
+                            index={index}
+                            checked={data.checked}
                             onChange={(e) => onChangeCheckbox(e, data.id, items)}
                             />
                     </div>

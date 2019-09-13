@@ -1,5 +1,6 @@
-export const selectNothing = () => {
+export const selectNothing = (data) => {
     return {
-        type: "SELECT_NOTHING_DATA"
+        type: "SELECT_NOTHING_DATA",
+        data
     }
 }

@@ -9,13 +9,15 @@ const mapStateToProps = (state) => {
 
     return {
         data: state.main.dataRight,
+        selectAll: state.main.selectAll,
+        selectedData: state.main.selectedData,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        selectAllData: () => dispatch(selectAll()),
-        selectNothingData: () => dispatch(selectNothing()),
+        selectAllData: (data) => dispatch(selectAll(data)),
+        selectNothingData: (data) => dispatch(selectNothing(data)),
         deleteAllData: (dataId) => dispatch(deleteSelectedAll(dataId)),
         addRowLeftTable: (data) => dispatch(addRowLeftTable(data)),
     }
