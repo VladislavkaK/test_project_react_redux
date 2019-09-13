@@ -9,10 +9,16 @@ function mainReducer (state = initialState, action: any) {
     switch (action.type) {
         case "SELECT_ALL_DATA":
             return SELECT_ALL_DATA(state, action);
+        case "ADD_ROW":
+            return ADD_ROW(state, action);
+        case "DELETE_ROW":
+            return DELETE_ROW(state, action);        
         case "SELECT_NOTHING_DATA":
             return SELECT_NOTHING_DATA(state, action);
         case "DELETE_SELECTED_ALL_DATA":
-            return DELETE_SELECTED_ALL_DATA(state, action);    
+            return DELETE_SELECTED_ALL_DATA(state, action);  
+        case "ADD_ROW_LEFT_TABLE":
+            return ADD_ROW_LEFT_TABLE(state, action);  
         default:
             return state;
     }
@@ -31,6 +37,28 @@ function SELECT_ALL_DATA(state, action) {
     };
 }
 
+function ADD_ROW (state, action) {
+    const { row: { id, artNo, name, description } } = action;
+
+    return {
+        ...state,
+        dataRight: [
+            ...state.dataRight,
+            { id, artNo, name, description }
+        ]
+    }
+}
+
+function DELETE_ROW (state, action) {
+    const { idRow } = action;
+
+    const dataLeft = state.dataLeft.filter((data, index) => {
+        return index !== idRow
+    })
+
+    return { ...state, dataLeft }
+}
+
 function SELECT_NOTHING_DATA(state, action) {
 
     return {
@@ -44,13 +72,51 @@ function SELECT_NOTHING_DATA(state, action) {
     };
 }
 
-function DELETE_SELECTED_ALL_DATA(state, { dataId }) {
+function DELETE_SELECTED_ALL_DATA(state, action) {
+    const { data } = action;
 
-    const data = state.dataRight.filter((data, index) => {
-        data.id !== dataId[index].id
+    for (let key in data) {
+        for (let index in state.dataRight) {
+            if (data[key].id === state.dataRight[index].id) {
+                delete state.dataRight[index];
+            }
+        }
+    }
+
+    const newData = state.dataRight.map(item => {
+        if (item !== null) {
+            return {
+                id: item.id,
+                artNo: item.artNo,
+                name: item.name,
+                description: item.description,
+                checked: false
+            }
+        }
     })
 
-    return { ...state, dataRight: data };
+    return { ...state, dataRight: newData };
 }
+
+function ADD_ROW_LEFT_TABLE (state, action) {
+    const { row } = action;
+
+    let newData = [...state.dataLeft];
+    for (let key in row) {
+        newData.push({
+            id: row[key].items.id,
+            artNo: row[key].items.artNo,
+            name: row[key].items.name,
+            description: row[key].items.description,
+            checked: false,
+        });
+    }
+
+    return {
+        ...state,
+        dataLeft: newData
+    }
+}
+
 
 export default mainReducer;

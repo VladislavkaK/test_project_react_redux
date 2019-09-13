@@ -1,16 +1,33 @@
 import * as React from 'react';
 import { Checkbox } from '../../components';
+import { useState } from 'react';
 
-const ContentDataTableRight = ({ data, arrData, deleteAllData }) => {
+const ContentDataTableRight = ({ data, deleteAllData, selectedCheckboxIndex, setSelectedCheckboxIndex }) => {
+    const [isChecked, setIsChecked] = useState(false);
+
+    const onChangeCheckbox = (e, id, items) => {
+
+        const { checked } = e.target;
+
+        if (checked) {
+            selectedCheckboxIndex.push({id, items})  
+        } else {
+            const newIndex = selectedCheckboxIndex.findIndex(data => data.id === id);
+            selectedCheckboxIndex.splice(newIndex, 1)  
+        }
+        
+        setSelectedCheckboxIndex(selectedCheckboxIndex) 
+    }
 
     return (
         <React.Fragment>
             {data !== undefined && data.map((data, index) => {
-                // if (data.checked) {
-                //     arrData.push({id: data.id})
-                // }
-                const onChangeCheckbox = () => {
-                    deleteAllData(data.id)
+                const items= {
+                    id: data.id,
+                    artNo: data.artNo,
+                    name: data.name,
+                    description: data.description,
+                    checked: data.checked
                 }
 
                 return (
@@ -26,7 +43,12 @@ const ContentDataTableRight = ({ data, arrData, deleteAllData }) => {
                                 {data.description}
                             </div>
                         </div>
-                        <Checkbox index={index} checked={data.checked} onClick={onChangeCheckbox} />
+                        <Checkbox 
+                            value={isChecked}
+                            index={index} 
+                            checked={data.checked} 
+                            onChange={(e) => onChangeCheckbox(e, data.id, items)}
+                            />
                     </div>
                 )
             })}

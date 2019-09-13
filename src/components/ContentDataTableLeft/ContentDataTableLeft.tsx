@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useContent } from '../../utills/useContent';
 
 const ContentDataTableLeft = ({
     data,
     counter,
+    setActiveAdd,
     setSelectedIndex,
 }) => {
 
     const [selectedItem, setSelectedItem] = useState();
 
     const onChangeColorRow = (index) => {
+        setActiveAdd(false)
         setSelectedIndex(index)
     }
 
